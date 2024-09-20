@@ -3773,6 +3773,22 @@ MonoBehaviour:
   _scoreboardButton: {fileID: 1474852892}
   _exitScoreboardButton: {fileID: 2014028979}
   _resetResultButton: {fileID: 2139570451}
+  scoreFields:
+  - {fileID: 1702771232}
+  - {fileID: 827199683}
+  - {fileID: 245995440}
+  - {fileID: 527239092}
+  - {fileID: 1701641994}
+  - {fileID: 1682716472}
+  - {fileID: 142934578}
+  dateFields:
+  - {fileID: 1042354015}
+  - {fileID: 1939402237}
+  - {fileID: 2030985132}
+  - {fileID: 503005116}
+  - {fileID: 1612485052}
+  - {fileID: 1157118237}
+  - {fileID: 1371330673}
 --- !u!1 &1136158295
 GameObject:
   m_ObjectHideFlags: 0
