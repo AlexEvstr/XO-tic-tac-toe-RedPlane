@@ -84,11 +84,10 @@ public class GameBehavior : MonoBehaviour
                 currentPlayerText.text = "Draw!";
                 currentScore += 25; // При ничье добавляем 25 очков
                 UpdateScore();
-
-                PlayerPrefs.SetInt("CurrentScore", currentScore);
-                PlayerPrefs.Save();
-
                 SaveHighScore(currentScore);
+                PlayerPrefs.SetInt("CurrentLevel", currentLevel); // Сохраняем текущий уровень
+                PlayerPrefs.SetInt("CurrentScore", currentScore); // Сохраняем текущий счёт
+                PlayerPrefs.Save();
                 Invoke("ResetGame", 2f); // Перезапуск игры через 2 секунды после ничьей
                 return;
             }
@@ -126,6 +125,10 @@ public class GameBehavior : MonoBehaviour
             PlayerPrefs.SetInt("CurrentLevel", currentLevel); // Сохраняем уровень в PlayerPrefs
             PlayerPrefs.SetInt("CurrentScore", currentScore); // Сохраняем очки в PlayerPrefs
             UpdateScore();
+            SaveHighScore(currentScore);
+            PlayerPrefs.SetInt("CurrentLevel", currentLevel); // Сохраняем текущий уровень
+            PlayerPrefs.SetInt("CurrentScore", currentScore); // Сохраняем текущий счёт
+            PlayerPrefs.Save();
             winPanel.SetActive(true);
             continueWinButton.gameObject.SetActive(true); // Включаем кнопку "Продолжить" для победы
         }
@@ -183,35 +186,35 @@ public class GameBehavior : MonoBehaviour
             highScoreDates[i] = PlayerPrefs.GetString($"HighScoreDate_{i}", "");
         }
 
-        // Проверяем, попадает ли текущий результат в топ-7
-        for (int i = 0; i < maxHighScores; i++)
+        // Если это первый лучший результат, обновляем его
+        if (highScores[0] == 0 || score > highScores[0])
         {
-            if (score > highScores[i])
+            highScores[0] = score;
+            highScoreDates[0] = currentDate;
+        }
+        else if (currentLevel == 1) // При проигрыше смещаем текущий результат вниз
+        {
+            // Сдвигаем результаты ниже
+            for (int i = maxHighScores - 1; i > 0; i--)
             {
-                // Сдвигаем результаты ниже
-                for (int j = maxHighScores - 1; j > i; j--)
-                {
-                    highScores[j] = highScores[j - 1];
-                    highScoreDates[j] = highScoreDates[j - 1];
-                }
-
-                // Вставляем новый результат
-                highScores[i] = score;
-                highScoreDates[i] = currentDate;
-
-                // Сохраняем обновлённый топ-7
-                for (int j = 0; j < maxHighScores; j++)
-                {
-                    PlayerPrefs.SetInt($"HighScore_{j}", highScores[j]);
-                    PlayerPrefs.SetString($"HighScoreDate_{j}", highScoreDates[j]);
-                }
-
-                break;
+                highScores[i] = highScores[i - 1];
+                highScoreDates[i] = highScoreDates[i - 1];
             }
+
+            highScores[0] = score;
+            highScoreDates[0] = currentDate;
         }
 
-        PlayerPrefs.Save(); // Сохраняем изменения в PlayerPrefs
+        // Сохраняем обновленный топ-7
+        for (int j = 0; j < maxHighScores; j++)
+        {
+            PlayerPrefs.SetInt($"HighScore_{j}", highScores[j]);
+            PlayerPrefs.SetString($"HighScoreDate_{j}", highScoreDates[j]);
+        }
+
+        PlayerPrefs.Save(); // Сохраняем изменения
     }
+
 
     // Умный ход компьютера (алгоритм MiniMax)
     private void SmartComputerMove()

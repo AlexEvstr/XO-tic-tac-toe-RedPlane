@@ -28,6 +28,7 @@ public class ScoreboardController : MonoBehaviour
 
     private void OpenScoreboard()
     {
+        LoadHighScores();
         _menuWindow.SetActive(false);
         _scoreboardWindow.SetActive(true);
     }
@@ -38,24 +39,52 @@ public class ScoreboardController : MonoBehaviour
         _menuWindow.SetActive(true);
     }
 
-    private void ResetScoreResult()
+    public void ResetScoreResult()
     {
+        // Удаляем топ-7 результатов из PlayerPrefs
+        for (int i = 0; i < maxHighScores; i++)
+        {
+            PlayerPrefs.DeleteKey($"HighScore_{i}");
+            PlayerPrefs.DeleteKey($"HighScoreDate_{i}");
+        }
 
+        // Сохраняем изменения в PlayerPrefs
+        PlayerPrefs.Save();
+
+        // Очищаем отображение результатов на экране
+        for (int i = 0; i < maxHighScores; i++)
+        {
+            scoreFields[i].text = "";
+            dateFields[i].text = "";
+        }
     }
+
 
     private void LoadHighScores()
     {
+        // Загрузка текущего уровня
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+
+        // Создаем массив для хранения очков и дат
+        (int score, string date)[] highScores = new (int score, string date)[maxHighScores];
+
+        // Загружаем все сохранённые результаты
         for (int i = 0; i < maxHighScores; i++)
         {
-            // Загружаем счет и дату из PlayerPrefs
-            int score = PlayerPrefs.GetInt($"HighScore_{i}", 0);
-            string date = PlayerPrefs.GetString($"HighScoreDate_{i}", "");
+            highScores[i].score = PlayerPrefs.GetInt($"HighScore_{i}", 0);
+            highScores[i].date = PlayerPrefs.GetString($"HighScoreDate_{i}", "");
+        }
 
-            // Если есть сохраненные данные, выводим их, иначе оставляем пустые поля
-            if (score > 0 && !string.IsNullOrEmpty(date))
+        // Сортируем результаты по убыванию очков
+        Array.Sort(highScores, (a, b) => b.score.CompareTo(a.score));
+
+        // Отображаем результаты на экране
+        for (int i = 0; i < maxHighScores; i++)
+        {
+            if (highScores[i].score > 0 && !string.IsNullOrEmpty(highScores[i].date))
             {
-                scoreFields[i].text = score.ToString();
-                dateFields[i].text = FormatDate(date);
+                scoreFields[i].text = highScores[i].score.ToString();
+                dateFields[i].text = FormatDate(highScores[i].date);
             }
             else
             {
@@ -74,4 +103,5 @@ public class ScoreboardController : MonoBehaviour
         }
         return "";
     }
+
 }
