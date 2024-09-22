@@ -152,7 +152,7 @@ public class GameBehavior : MonoBehaviour
 
     private void UpdateScore()
     {
-        scoreText.text = "Score: " + currentScore;
+        scoreText.text = currentScore.ToString();
     }
 
     private void ComputerMove()
@@ -384,10 +384,10 @@ public class GameBehavior : MonoBehaviour
         }
 
         // Обновляем уровень и очки
-        levelText.text = "Level: " + currentLevel;
-        _winLevelText.text = "Level: " + currentLevel;
-        _loseLevelText.text = "Level: " + currentLevel;
-        scoreText.text = "Score: " + currentScore;
+        levelText.text = "LEVEL " + currentLevel;
+        _winLevelText.text = "LEVEL " + currentLevel;
+        _loseLevelText.text = "LEVEL " + currentLevel;
+        scoreText.text = currentScore.ToString();
 
         // Текущий ход — игрок X
         currentPlayerText.text = "Player X's turn";

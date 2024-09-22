@@ -14,6 +14,8 @@ public class SettingsController : MonoBehaviour
     [SerializeField] private AudioSource _soundManager;
     [SerializeField] private AudioSource _musicManager;
 
+    [SerializeField] private AudioClip _clickSound;
+
     [SerializeField] private Button _privacyButton;
     [SerializeField] private Button _exitPrivacyButton;
     [SerializeField] private Button _soundOffButton;
@@ -115,5 +117,10 @@ public class SettingsController : MonoBehaviour
     {
         _privacyWindow.SetActive(false);
         _optionsWindow.SetActive(true);
+    }
+
+    public void ClickSound()
+    {
+        _soundManager.PlayOneShot(_clickSound);
     }
 }
