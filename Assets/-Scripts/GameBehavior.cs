@@ -36,8 +36,11 @@ public class GameBehavior : MonoBehaviour
     public GameObject gameField;
     public GameObject winPanel;
     public GameObject losePanel;
-    public Button continueWinButton; // Кнопка "Продолжить" после победы
-    public Button continueLoseButton; // Кнопка "Продолжить" после поражения
+    //public Button continueWinButton; // Кнопка "Продолжить" после победы
+    //public Button continueLoseButton; // Кнопка "Продолжить" после поражения
+
+    private GameAdManager _gameAdManager;
+    private GameAudioController _gameAudioController;
 
     // Уровень и очки
     private int currentLevel = 1;
@@ -48,6 +51,8 @@ public class GameBehavior : MonoBehaviour
 
     void Start()
     {
+        _gameAdManager = GetComponent<GameAdManager>();
+        _gameAudioController = GetComponent<GameAudioController>();
         // Загружаем уровень и очки из PlayerPrefs или устанавливаем по умолчанию
         currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
         currentScore = PlayerPrefs.GetInt("CurrentScore", 0);
@@ -57,6 +62,8 @@ public class GameBehavior : MonoBehaviour
     public void PlayerMove(int index)
     {
         if (!isGameActive) return; // Если игра закончена, ничего не делать
+
+        _gameAudioController.PlayXSound();
 
         int row = index / 3;
         int col = index % 3;
@@ -82,13 +89,14 @@ public class GameBehavior : MonoBehaviour
             if (CheckDraw())
             {
                 currentPlayerText.text = "Draw!";
+                _gameAudioController.PlayDrawSound();
                 currentScore += 25; // При ничье добавляем 25 очков
                 UpdateScore();
                 SaveHighScore(currentScore);
                 PlayerPrefs.SetInt("CurrentLevel", currentLevel); // Сохраняем текущий уровень
                 PlayerPrefs.SetInt("CurrentScore", currentScore); // Сохраняем текущий счёт
                 PlayerPrefs.Save();
-                Invoke("ResetGame", 2f); // Перезапуск игры через 2 секунды после ничьей
+                Invoke("RestartAfterDraw", 2f); // Перезапуск игры через 2 секунды после ничьей
                 return;
             }
 
@@ -130,7 +138,9 @@ public class GameBehavior : MonoBehaviour
             PlayerPrefs.SetInt("CurrentScore", currentScore); // Сохраняем текущий счёт
             PlayerPrefs.Save();
             winPanel.SetActive(true);
-            continueWinButton.gameObject.SetActive(true); // Включаем кнопку "Продолжить" для победы
+            _gameAudioController.MuteMusic();
+            _gameAudioController.PlayWinSound();
+            //.gameObject.SetActive(true); // Включаем кнопку "Продолжить" для победы
         }
         else if (result.Contains("Player O"))
         {
@@ -141,7 +151,9 @@ public class GameBehavior : MonoBehaviour
             PlayerPrefs.SetInt("CurrentScore", currentScore); // Сбрасываем очки
             UpdateScore();
             losePanel.SetActive(true);
-            continueLoseButton.gameObject.SetActive(true); // Включаем кнопку "Продолжить" для поражения
+            _gameAudioController.MuteMusic();
+            _gameAudioController.PlayLoseSound();
+            //continueLoseButton.gameObject.SetActive(true); // Включаем кнопку "Продолжить" для поражения
         }
 
         // Сохраняем лучший результат
@@ -158,6 +170,8 @@ public class GameBehavior : MonoBehaviour
     private void ComputerMove()
     {
         if (!isGameActive) return;
+
+        _gameAudioController.PlayOSound();
 
         // Случайная ошибка компьютера (например, 10% шанс на ошибку)
         if (UnityEngine.Random.Range(0f, 1f) < 0.1f)
@@ -312,6 +326,7 @@ public class GameBehavior : MonoBehaviour
             Image lineImage = winLines[index].GetComponent<Image>();
             lineImage.sprite = (player == Player.PlayerX) ? winLineRed : winLineGreen;
             winLines[index].SetActive(true);
+            _gameAudioController.PlayLineSound();
         }
     }
 
@@ -363,8 +378,24 @@ public class GameBehavior : MonoBehaviour
         return true;
     }
 
+    public void RestartAfterDraw()
+    {
+        _gameAdManager.ShowAd1Of10(ResetGame);
+    }
+
+    public void RestartAfterWinOrLose()
+    {
+        _gameAdManager.ShowAd1Of5(ResetGame);
+    }
+
+    public void ReloadCurrentGame()
+    {
+        _gameAdManager.ShowAdEveryTime(ResetGame);
+    }
+
+
     // Метод для сброса игры (исправление для белых квадратов)
-    public void ResetGame()
+    private void ResetGame()
     {
         grid = new Player[3, 3];
         currentPlayer = Player.PlayerX;
@@ -396,8 +427,10 @@ public class GameBehavior : MonoBehaviour
         gameField.SetActive(true);
         winPanel.SetActive(false);
         losePanel.SetActive(false);
-        continueWinButton.gameObject.SetActive(false);
-        continueLoseButton.gameObject.SetActive(false);
+        _gameAudioController.UnMuteMusic();
+        _gameAudioController.PlayStartGameSound();
+        //continueWinButton.gameObject.SetActive(false);
+        //continueLoseButton.gameObject.SetActive(false);
     }
 
     public void BackToMenu()

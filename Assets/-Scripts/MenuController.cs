@@ -16,8 +16,11 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject _onBoardWindow;
     [SerializeField] private GameObject _privacyWindow;
 
+    private UnityBannerAd _UnityBannerAd;
+
     private void Start()
     {
+        _UnityBannerAd = GetComponent<UnityBannerAd>();
         int firstEnter = PlayerPrefs.GetInt("FirstEnterOnBoard", 0);
         if (firstEnter != 0) StartGame();
         else _onBoardWindow.SetActive(true);
@@ -54,6 +57,7 @@ public class MenuController : MonoBehaviour
         _onBoardWindow.SetActive(false);
         _menuWindow.SetActive(true);
         PlayerPrefs.SetInt("FirstEnterOnBoard", 1);
+        _UnityBannerAd.LoadBanner();
     }
 
     private void PlayGame()

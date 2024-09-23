@@ -3796,6 +3796,7 @@ GameObject:
   - component: {fileID: 1078491947}
   - component: {fileID: 1078491948}
   - component: {fileID: 1078491949}
+  - component: {fileID: 1078491950}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -3858,7 +3859,7 @@ MonoBehaviour:
   _exitOptionsButton: {fileID: 291831305}
   _soundManager: {fileID: 1266542985}
   _musicManager: {fileID: 1480779178}
-  _clickSound: {fileID: 8300000, guid: d7e657ac41b16477a93b2756c751e650, type: 3}
+  _clickSound: {fileID: 8300000, guid: d1a0be525e0fd42ee92da71df910044c, type: 3}
   _privacyButton: {fileID: 205604835}
   _exitPrivacyButton: {fileID: 394015240}
   _soundOffButton: {fileID: 2000367640}
@@ -3898,6 +3899,22 @@ MonoBehaviour:
   - {fileID: 1612485052}
   - {fileID: 1157118237}
   - {fileID: 1371330673}
+--- !u!114 &1078491950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078491945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9e3de82553c400fa004867cdd06fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidGameId: 5701760
+  iosGameId: 5701761
+  androidBannerAdUnitId: Banner_Android
+  iosBannerAdUnitId: Banner_iOS
 --- !u!1 &1136158295
 GameObject:
   m_ObjectHideFlags: 0
@@ -8183,7 +8200,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 425}
   m_SizeDelta: {x: 1000, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2139570451

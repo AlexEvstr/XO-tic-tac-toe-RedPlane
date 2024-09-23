@@ -975,6 +975,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1163186243}
+        m_TargetAssemblyTypeName: GameAudioController, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &208856750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,7 +1710,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 425}
   m_SizeDelta: {x: 1000, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &289528821
@@ -1745,6 +1757,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1163186243}
+        m_TargetAssemblyTypeName: GameAudioController, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScoreboardController, Assembly-CSharp
         m_MethodName: ResetScoreResult
@@ -1899,7 +1923,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f1d66332441ad4a1aace7b037a4c5475, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2330,6 +2354,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1163186238}
         m_TargetAssemblyTypeName: GameBehavior, Assembly-CSharp
         m_MethodName: BackToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1163186243}
+        m_TargetAssemblyTypeName: GameAudioController, Assembly-CSharp
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3101,7 +3137,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 792351959}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1163186243}
+        m_TargetAssemblyTypeName: GameAudioController, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &792351959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4544,6 +4592,8 @@ GameObject:
   - component: {fileID: 1163186239}
   - component: {fileID: 1163186238}
   - component: {fileID: 1163186241}
+  - component: {fileID: 1163186242}
+  - component: {fileID: 1163186243}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -4594,8 +4644,6 @@ MonoBehaviour:
   gameField: {fileID: 1525684921}
   winPanel: {fileID: 848270874}
   losePanel: {fileID: 1032092135}
-  continueWinButton: {fileID: 1930892165}
-  continueLoseButton: {fileID: 1872955046}
 --- !u!4 &1163186239
 Transform:
   m_ObjectHideFlags: 0
@@ -4644,6 +4692,44 @@ MonoBehaviour:
   - {fileID: 1656347862}
   - {fileID: 1997191276}
   - {fileID: 1620769278}
+--- !u!114 &1163186242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163186237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20920312c45ba4650853361f08196cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidGameId: 5701760
+  iosGameId: 5701761
+  androidInterstitialAdUnitId: Interstitial_Android
+  iosInterstitialAdUnitId: Interstitial_iOS
+--- !u!114 &1163186243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163186237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3033b83d7724bcfa6f77554014dac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundManager: {fileID: 765645720}
+  _musicManager: {fileID: 450446145}
+  _xSound: {fileID: 8300000, guid: 0461e4f12347545eb87999fe415c6d0b, type: 3}
+  _oSound: {fileID: 8300000, guid: 3d987d81a23f64f8197e8fdc6acf935e, type: 3}
+  _clickSound: {fileID: 8300000, guid: d1a0be525e0fd42ee92da71df910044c, type: 3}
+  _winSound: {fileID: 8300000, guid: c9735f56b284e4ae08bdbf49f1cc4c8f, type: 3}
+  _loseSound: {fileID: 8300000, guid: c0c346f6052184c86ac129e3b46de9a6, type: 3}
+  _lineSound: {fileID: 8300000, guid: 138ea2bdb2aa74972ae9fda0d229def8, type: 3}
+  _drawSound: {fileID: 8300000, guid: af356a15c39a24d608f8ed17db4fa00f, type: 3}
+  _startGameSound: {fileID: 8300000, guid: 5d19fb1c2b3684bf082314aad69644fd, type: 3}
 --- !u!1 &1187588651
 GameObject:
   m_ObjectHideFlags: 0
@@ -5548,6 +5634,7 @@ GameObject:
   - component: {fileID: 1409169801}
   - component: {fileID: 1409169803}
   - component: {fileID: 1409169802}
+  - component: {fileID: 1409169804}
   m_Layer: 5
   m_Name: restartButton
   m_TagString: Untagged
@@ -5612,6 +5699,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409169800}
   m_CullTransparentMesh: 1
+--- !u!114 &1409169804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409169800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1409169802}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1163186243}
+        m_TargetAssemblyTypeName: GameAudioController, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1163186238}
+        m_TargetAssemblyTypeName: GameBehavior, Assembly-CSharp
+        m_MethodName: ReloadCurrentGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1415937503
 GameObject:
   m_ObjectHideFlags: 0
@@ -7370,6 +7525,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1163186243}
+        m_TargetAssemblyTypeName: GameAudioController, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1163186238}
         m_TargetAssemblyTypeName: GameBehavior, Assembly-CSharp
         m_MethodName: BackToMenu
@@ -7613,7 +7780,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1163186238}
         m_TargetAssemblyTypeName: GameBehavior, Assembly-CSharp
-        m_MethodName: ResetGame
+        m_MethodName: RestartAfterWinOrLose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1163186243}
+        m_TargetAssemblyTypeName: GameAudioController, Assembly-CSharp
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7745,7 +7924,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1163186238}
         m_TargetAssemblyTypeName: GameBehavior, Assembly-CSharp
-        m_MethodName: ResetGame
+        m_MethodName: RestartAfterWinOrLose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1163186243}
+        m_TargetAssemblyTypeName: GameAudioController, Assembly-CSharp
+        m_MethodName: PlayClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8715,7 +8906,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2052516198}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1163186243}
+        m_TargetAssemblyTypeName: GameAudioController, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2052516198
 MonoBehaviour:
   m_ObjectHideFlags: 0
